@@ -1,0 +1,12 @@
+una vez que descargues este nuevo conjunto de archivos lo que debes de hacer es (vas a ver una carpeta que dice users a esa no la tenes que migrar ni nada dejala como esta)
+1) eliminar la carpeta que dice "imac" (esa carpeta esta de mas, ya te debes acordar)
+2)realizar el comando python3 manage.py makemigrations antec, luego el de core y asi con todas las demas carpetas 
+menos con la que dice imac2
+3)luego ejecutar el comando python3 manage.py migrate antec, luego el de core y asi con todas las demas carpetas
+menos imac2
+4) luego correr el servidor python3 manage.py runserver 
+5) cuando copies el enlase del server en el navegador, pone la url y no agregues nada mas y te va a saltar el login
+en el ligin registrate con el usuario y contraseña que tenes como admin ya que no hay otros usuarios creados
+vas a poner usuario = imac 
+	    password = lapanterarosa (creo que esa era la clave, vos la sabias)
+luego pone ingresar y vas a navegar por las paginas tranquilamente.

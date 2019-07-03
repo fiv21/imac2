@@ -1,0 +1,149 @@
+{% extends "core/base.html" %} <!-- extiendo de base.htm  -->
+
+
+{% block background %}{% load static %}{% static 'core/img/core.jpg' %}{% endblock %}
+<!-- le indico a django que tengo que cargar archivos estaticos para renderizar esta pagina -->
+ 
+
+
+{%block headers%}
+{%endblock%}
+
+
+ {% block content %}
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="utf-8"/>
+    <!--<link rel="stylesheet" href="estilo.css">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">  
+
+<!-- Estilos de las fuentes  y los espacios de mis divs de bootstrap   -->
+<style>
+            .espacio{
+            margin-left: 200px;     
+            margin-bottom: 20px;
+            }
+
+            .cober{
+              margin-bottom: 40;
+              margin-left: 200px;
+            }
+
+            .espacio2{
+                 margin-left: 100px;
+                 margin-bottom: 20px;
+            }
+           
+
+
+            .borde{
+            
+                background: #2d3436;
+                margin-left: 515px;
+            }
+
+            .grad {
+                background-image: linear-gradient(to right, #636e72 , #dfe6e9);
+            }
+
+            
+    </style>
+
+
+
+ <!-- genero el formulario-->
+   <form method="POST">
+          {% csrf_token %}
+                <div class="row">
+                    <div class="col-sm-2 espacio" ><!-- Estudio -->
+                        {{form.nombre.label_tag}}
+                        {{form.nombre}}
+                    </div>
+                   
+                </div>
+                    </div>
+
+                
+                <div class="row">
+                    <div class="col-sm-2 espacio" ><!-- Estudio -->
+                        {{form.apellido.label_tag}}
+                        {{form.apellido}}
+                    </div>
+                   
+                </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-sm-2 espacio"><!-- Dni -->
+                                    {{form.dni.label_tag}}
+                                    <br>
+                                   {{form.dni}}
+                            </div>
+                            <div class="form-group col-sm-2 espacio2"> <!-- Cobertura Social -->
+                                {{form.nacionalidad.label_tag}}
+                                <br>
+                                {{form.nacionalidad}} 
+                            </div>   
+                          </div>
+                            <div class="row">
+                                <div class="col-sm-3 espacio"><!-- NombreCompleto -->
+                                        {{form.domicilio.label_tag}}
+                                        <br>
+                                        {{form.domicilio}}
+                                </div>    
+                            </div>
+                            
+                            <div class="row">
+                        
+                                   <div class="col-sm-1 espacio"><!-- Peso -->
+                                            {{form.numero_domicilio.label_tag}}
+                                            <br>
+                                            {{form.numero_domicilio}}
+                                    </div>
+                                   
+                            </div>
+                           
+                             <div class="row">
+                             <div class="col-sm-3 espacio"><!-- imc -->
+                                            {{form.cobertura_medica.label_tag}}
+                                            <br>
+                                            {{form.cobertura_medica}}
+                                          
+                                    </div>
+                            </div>
+                             <div class="row">
+                        
+                                    <div class="col-sm-2 espacio"><!-- perimetro abdominal -->
+                                            {{form.numero_afilido.label_tag}}
+                                           
+                                            {{form.numero_afilido}}
+                                     </div>
+                                     
+                             </div>
+                            
+                             <div class="row">
+                        
+                                    <div class="col-sm-2 espacio"><!-- perimetro abdominal -->
+                                            {{form.sexo.label_tag}}
+                                            <br>
+                                            {{form.sexo}}
+                                     </div>
+                                     
+                             </div>
+                             <div class="row">  
+                                    <div class="form-group col-sm-2 espacio"> <!-- Calidad Tecnica -->
+                                       {{form.fecha_nacimiento.label_tag}}
+                                        <br>
+                                        {{form.fecha_nacimiento}}   
+                                    </div>   
+                                </div>
+                            
+                        <div class="row"> 
+                                <div class="form-group col-sm-6 espacio">
+                                        <button type="submit" class="btn btn-secondary btn-lg borde ">Guardar</button> 
+                                </div>
+                        </div>
+    </form> 
+   
+
+
+ {% endblock %} 

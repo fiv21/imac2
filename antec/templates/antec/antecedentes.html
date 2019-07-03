@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+
+<style>
+	
+
+   /*.container {*/
+  /*  height:100px;
+    width:600px;
+    background-color:gray;   */    
+/*}*/
+/*
+.left {
+    float:left;
+    width:600px;
+    background-color:blue;
+}
+.right {
+    float:right;
+    width:400px;
+    background-color:red;
+}
+
+*/
+	 fieldset 
+	{
+		border: 3px solid #ddd !important;
+		margin: 0;
+		xmin-width: 0;
+		padding: 10px;       
+		position: relative;
+		border-radius:4px;
+		background-color:#f5f5f5; /*#f5f5f5*/
+		padding-left:10px!important;
+	}	
+	
+		legend
+		{
+			font-size:14px;
+			font-weight:bold;
+			margin-bottom: 0px; 
+			width: 35%; 
+			border: 1px solid #ddd;
+			border-radius: 4px; 
+			padding: 5px 5px 5px 10px; 
+			background-color: #ffffff;
+		}
+
+
+
+/* body::after {
+             content: "";
+             background: url('bg-01.jpg');;
+             /*opacity: 0.4;*/
+       /*  background-color: rgba(0,0,0,0.8);
+           filter:brightness(0.4);/*opacidad
+             top: 0;
+             left: 0;
+             bottom: 0;
+             right: 0;
+             position: absolute;
+             z-index: -1;   
+           }           
+*/
+
+</style>
+
+<body>
+
+	<!-- Comienzo de Navbar -->
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+  <a class="navbar-brand" href="#"> <img src="listo.png" width="70" height="50" alt=""></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+<!-- ---------------- -->
+
+
+
+
+<form class="form-inline">
+	<div class="input-group">
+      <div class="input-group-prepend">
+      	 <span class="input-group-text">🔍</span>
+      	</div>
+      	    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+      </div>
+
+  </form>
+
+    <ul class="navbar-nav ">
+    
+    
+     <!-- <button class="btn btn-danger mr-sm-4  my-2 " type="submit">Cancelar</button> -->
+    <!-- <button class="btn btn-success mr-sm-4 my-2 " type="submit">Editar</button> -->
+    
+    	 <button class="btn btn-primary mr-sm-4 my-2 ml-md-3" type="submit">Guardar</button>
+    </ul>
+  </div>
+</nav>
+<!-- Fin de Navbar -->
+<br>
+	<table class="table table-dark table-hover" border="1">
+	    <thead>
+	      <tr>
+	        <th><input type="checkbox" value=""></th>
+	        <th>Nombre</th>
+	        <th>Apellido</th>
+	        <th>DNI</th>
+	        <th>Cobertura medica</th>
+	        <th>Numero de afiliado</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+		{% if antec %}
+		{% for antecedente in antec  %}
+	    <tr>
+	    	<td><input type="checkbox" value=""></td>
+	        <td>antecedente.nombre</td>
+	        <td>antecedente.apellido</td>
+	        <td>antecedente.dni</td>
+	        <td>antecedente.cobertura_medica</td>
+	        <td>antecedente.numero_afilido</td>
+		</tr>
+		{% endfor %}
+		{% else %}
+		   <h1>No hay</h1>
+		{% endif %}
+	    </tbody>
+	  </table>
+	
+
+
+<br>
+<div style="margin-left:100px;">
+<p>Hola bro!</p>
+</div>
+
+	
+
+<div class="form-inline">
+<fieldset class="form-group form-inline col-md-7 ml-md-3">    	
+						<legend>FCRV</legend>
+				<div class="form-group form-inline ">
+ <form method="POST">
+          {% csrf_token %}
+
+				{{form.paciente_antecedente.label_tag}}
+				{{form.paciente_antecedente}}
+	 
+				<div class="form-group form-inline ">
+				
+				<div class="col-md-3 form-inline ">
+					
+			      	<div class="form-check mr-sm-4">
+					{{form.fcrv_hta.label_tag}}
+					{{form.fcrv_hta}}
+			      	</div>
+			  	</div>
+				<div class="col-md-3 form-inline ">
+					
+			      	<div class="form-check mr-sm-4">
+					{{form.fcrv_dta.label_tag}}
+					{{form.fcrv_dta}}
+			      	</div>
+			  	</div>
+
+				
+				<div class="col-md-4 form-inline">
+				
+				{{form.fecha_fcrv_hta.label_tag}}
+				<div class="col-md-4 form-inline">
+				{{form.fecha_fcrv_hta}}
+				</div>
+				</div><br> <br><br>
+				
+			  </div>
+			  <div class="col-md-4 form-inline">
+				
+				{{form.fecha_fcrv_dta.label_tag}}
+				<div class="col-md-4 form-inline">
+				{{form.fecha_fcrv_dta}}
+				</div>
+				</div><br> <br><br>
+				
+			  </div>
+	  
+</div> 
+<!-- ------------------ -->
+
+	
+<!-- --------------------- -->
+<div class="form-group form-inline ">
+		<div class="col-md-6 form-inline ">
+			      <div class="form-check mr-sm-4">
+				  	{{form.anteced_fliar.label_tag}}       
+					{{form.anteced_fliar}}
+			      </div>
+			  </div>
+			  
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.tabaquismo.label_tag}}
+					{{form.tabaquismo}}
+			      </div>
+			  </div> 
+</div> 
+</div>
+<!-- --------------------------- -->
+
+
+<div class="form-group form-inline ">
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+					{{form.dislipemia.label_tag}}
+					{{form.dislipemia}}
+			      </div>
+			  </div>
+
+
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.sedentarismo.tabel_Tag}}
+					{{form.sedentarismo}}
+			      </div>
+			  </div>
+
+
+	  
+</div> 
+
+
+
+
+
+<div class="form-group form-inline ">
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.estres.label_tag}}
+					{{form.estres}}
+			      </div>
+			  </div>
+
+
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.chagas.label_tag}}
+					{{form.chagas}}
+			      </div>
+			  </div>
+
+
+			  <div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.resincron.label_tag}}
+					{{form.resincron}}
+			      </div>
+			  </div>
+
+
+			
+
+	  
+</div> 
+
+<div class="form-group form-inline ">
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.ex_tabaquismo}}
+					{{form.ex_tabaquismo.label_tag}}
+			      </div>
+			  </div>
+
+
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.marcapasos.label_tag}}
+					{{form.marcapasos}}
+			      </div>
+			  </div>
+
+
+			  <div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.cdi.label_tag}}
+					{{form.cdi}}
+			      </div>
+			  </div>	  
+</div> 
+</fieldset>				
+					
+				<fieldset class="form-group form-inline col-md-4 ml-md-3 ">    	
+						<legend>CRM</legend>
+<br> <br>
+<div class="form-group form-inline ">
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.crm_hta.label_tag}}
+					{{form.crm_hta}}
+			      </div>
+			  </div>
+
+
+
+			
+<div class="col-md-4 form-inline  ">
+			      
+  <div class="col-md-3 form-inline ">
+  <div class="form-check mr-sm-4">
+		{{form.fecha_crm_hta.label_tag}}
+		{{form.fecha_crm_hta}}
+
+			  </div>
+			  </div>
+</div> 
+	
+
+
+
+	<div class="form-group form-inline ">
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.pm.label_tag}}
+					{{form.pm}}
+			      </div>
+			  </div>
+
+
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.pm_da.label_tag}}
+					{{form.pm_da}}
+			      </div>
+			  </div>
+
+
+			  <div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.pm_dg.label_tag}}
+					{{form.pm_dg}}
+			      </div>
+			  </div>
+
+
+	  
+</div> 
+
+<div class="form-group form-inline ">
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.pm_cx.label_tag}}
+					{{form.pm_cx}}
+			      </div>
+			  </div>
+
+
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.pr.label_tag}}
+					{{form.pr}}
+			      </div>
+			  </div>
+
+
+			  <div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.pr_dg.label_tag}}
+					{{form.pr_dg}}
+			      </div>
+			  </div>
+
+
+	  
+</div> 
+
+<div class="form-group form-inline ">
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.pr_cx.label_tag}}
+					{{form.pr_cx}}
+			      </div>
+			  </div>
+
+
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.pv.label_tag}}
+					{{form.pv}}
+			      </div>
+			  </div>
+
+
+			  <div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.pv_da.label_tag}}
+					{{form.pv_da}}
+			      </div>
+			  </div>
+
+
+	  
+</div> 
+
+
+<div class="form-group form-inline ">
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.pv_dg.label_tag}}
+					{{form.pv_dg}}
+			      </div>
+			  </div>
+
+
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.pv_cx.label_tag}}
+					{{form.pv_cx}}
+			      </div>
+			  </div>
+  
+</div> 
+
+<br><br>
+
+						
+					</fieldset>				
+					
+		<!-- --------------------------------------		 -->
+
+   <fieldset class="form-group form-inline col-md-7 ml-md-3">    	
+						<legend>ANTECEDENTES</legend>
+						
+	
+	<div class="form-group form-inline ">
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.infarto.label_tag}}
+					{{form.infarto}}
+			      </div>
+			  </div>
+
+
+
+			
+	<div class="col-md-4 form-inline ">
+				{{form.fecha_infarto_reciente.label_tag}}
+				{{form.fecha_infarto_reciente}}
+			  </div>
+</div> 
+	<div class="form-group form-inline ">
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.atc1.label_tag}}
+					{{form.atc1}}
+			      </div>
+			  </div>
+
+
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.atc1_da.label_tag}}
+					{{form.atc1_da}}
+			      </div>
+			  </div>
+
+
+			  <div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.atc1_dg.label_tag}}
+					{{form.atc1_dg}}
+			      </div>
+			  </div>
+
+
+	  
+</div> 
+
+<div class="form-group form-inline ">
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.atc1_cx.label_tag}}
+					{{form.atc1_cx}}
+			      </div>
+			  </div>
+
+
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.atc1_cd.label_tag}}
+					{{form.atc1_cd}}
+			      </div>
+			  </div>
+
+
+			  <div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.atc1_stent_bms.label_tag}}
+					{{form.atc1_stent_bms}}
+			      </div>
+			  </div>
+
+
+	  
+</div> 
+
+<div class="form-group form-inline ">
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			       {{form.atc1_stent_des.label_tag}}
+					{{form.atc1_stent_des}}
+			      </div>
+			  </div>
+
+
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.atc2.label_tag}}
+					{{form.atec2}}
+			      </div>
+			  </div>
+
+
+			  <div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.atc2_da.label_tag}}
+					{{form.atc2_da}}
+			      </div>
+			  </div>
+
+
+	  
+</div> 
+
+
+<div class="form-group form-inline ">
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.atc2_dg.label_tag}}
+					{{form.atc2_dg}}
+			      </div>
+			  </div>
+
+
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.atc2_cx.label_tag}}
+					{{form.atc2_cx}}
+			      </div>
+			  </div>
+
+
+			  <div class="col-md-3 form-inline  ">
+			      <div class="form-check mr-sm-4">
+			        {{form.atc2_cd.label_tag}}
+					{{form.atc2_cd}}
+			      </div>
+			  </div>
+
+
+	  
+</div> 
+
+<div class="form-group form-inline ">
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.atc2_stent_bms.label_tag}}
+					{{form.atc2_stent_bms}}
+			      </div>
+			  </div>
+
+
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.atc2_stent_des.label_tag}}
+					{{form.atc2_stent_des}}
+			      </div>
+			  </div>
+
+
+			  <div class="col-md-3 form-inline  ">
+			      <div class="form-check mr-sm-4">
+			        {{form.atc3.label_tag}}
+					{{form.atc3}}
+			      </div>
+			  </div>
+
+
+	  
+</div> 
+
+<div class="form-group form-inline ">
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.atc3_da.label_tag}}
+					{{form.atc3_da}}
+			      </div>
+			  </div>
+
+
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.atc3_dg.label_tag}}
+					{{form.atc3_dg}}
+			      </div>
+			  </div>
+
+
+			  <div class="col-md-3 form-inline  ">
+			      <div class="form-check mr-sm-4">
+			        {{form.atc3_cx.label_tag}}
+					{{form.atc3_cx}}
+			      </div>
+			  </div>
+
+
+	  
+</div> 
+
+<div class="form-group form-inline ">
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			       {{form.atc3_cd.label_tag}}
+					{{form.atc3_cd}}
+			      </div>
+			  </div>
+
+
+
+<div class="col-md-3 form-inline ">
+			      <div class="form-check mr-sm-4">
+			        {{form.atc3_stent_bms.label_tag}}
+					{{form.atc3_stent_bms}}
+			      </div>
+			  </div>
+
+
+			  <div class="col-md-3 form-inline  ">
+			      <div class="form-check mr-sm-4">
+			        {{form.atc3_stent_des.label_tag}}
+					{{form.atc3_stent_des}}
+			      </div>
+			  </div>
+
+
+	  
+</div> 
+
+
+						
+					</fieldset>				
+				
+
+<!-- ---------------------------------------------------- -->
+
+<div class="p-0 col-md-4 ml-md-3" >
+	
+	 <fieldset class="form-group form-inline ">    	
+							<legend>OTROS</legend>
+							
+		
+		
+	       
+					 <div class="form-group shadow-textarea">
+					  {{form.otros_antecedentes.label_tag}}
+					  {{form.otros_antecedentes}}
+					  
+					</div>
+		  
+	
+							
+						</fieldset>				
+	
+	
+		
+				<div class=" form-group form-inline my-md-2">
+						
+						<button class="btn btn-danger mr-md-4 ml-auto" > Cancelar</button>
+						
+						<button type="submit" class="btn btn-success" > Guardar</button>
+					</div>	
+	</div>
+
+				<!-- -----------ultimo div -->
+	            </div>
+</form> 
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
