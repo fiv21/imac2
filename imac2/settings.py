@@ -26,7 +26,7 @@ SECRET_KEY = 'eu6id5!@w$%7fbpwdl5p1p^e75tm+z32dt*$=*8gi80e03gn-%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['imac.ai-solutions.dev', '35.209.40.242']
+ALLOWED_HOSTS = []
 
 
 # Application definition
