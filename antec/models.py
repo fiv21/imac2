@@ -53,11 +53,7 @@ class Antecedentes(models.Model):
     atc3_da = models.BooleanField(default=False, null=True)
     atc3_dg = models.BooleanField(default=False, null=True)
     atc3_cx = models.BooleanField(default=False, null=True)
-<<<<<<< HEAD
     atc3_cd = models.BooleanField(default=False, null=True)
-=======
-    atc2_cd = models.BooleanField(default=False, null=True)
->>>>>>> 7927276fd1b2c4dd6dc819fd275d3e6d654cb1e2
     atc3_stent_bms = models.BooleanField(default=False, null=True)
     atc3_stent_des = models.BooleanField(default=False, null=True)
     otros_antecedentes = models.TextField(null = True)

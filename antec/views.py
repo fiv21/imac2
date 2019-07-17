@@ -1,12 +1,31 @@
 from django.shortcuts import render
-<<<<<<< HEAD
 from.forms import formAntecedentes
+from django.db.models import Q
 from core.models import Pacientes 
 # Create your views here.
 
 def form_antecedente(request):
-    antecedente = Pacientes.objects.all()
-    context = {'antec':antecedente}
+
+
+
+#agregando busqueda 
+   # if request.method == 'POST':
+      #  srch=request.POST['srh']
+       # if srch:
+         #   match=Pacientes.objects.filter(Q(nombre__icontains=srch)  |  Q(dni__icontains=srch))
+          #  if match:
+           #     return render(request,"antec/antecedentes.html",{'sr':match})
+            #else:
+             #   return render(request,'core/home.html')
+    #return render(request,'antec/antecedentes.html')
+
+    #####agregando prueba busqueda.
+    if request.method == 'GET':
+        q = request.GET.get('q', '')
+        eventos = Pacientes.objects.filter(nombre__icontains=q)
+        return render(request, 'antec/antecedentes.html', {'eventos': eventos})
+
+
     if request.method == 'POST':
         form=formAntecedentes(request.POST) #indico metodos POST de la transmicion de mis datos
         if form.is_valid():
@@ -15,10 +34,5 @@ def form_antecedente(request):
         return render(request,"core/home.html")#al ser esto exitoso redirecciono a home
     else:
         form=formAntecedentes#caso contrario atualizo la misma pagina del forulario
-    return render(request,"antec/antecedentes.html",{'form':form},context) #renerizo indicando que exitste formulario
-
-
-=======
-
-# Create your views here.
->>>>>>> 7927276fd1b2c4dd6dc819fd275d3e6d654cb1e2
+        return render(request,'antec/antecedentes.html')#renerizo indicando que exitste formulario
+    return render(request,"antec/antecedentes.html",{'form':form})

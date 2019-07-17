@@ -4,8 +4,7 @@ from.import views
 urlpatterns = [
 
     #path del core
-    path('antecedente/', views.form_antecedente, name="antecedentes"),
-    #path('busqueda/', views.busqueda, name="busquedas"),
+    path('funcionventricular/', views.formventricular, name="ventricular"),
     
     
 ]
