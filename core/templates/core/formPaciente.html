@@ -1,186 +1,192 @@
 
 {% extends "core/base.html" %} <!-- extiendo de base.htm  -->
+
 {%block title%}  <title>Tabla de estudios</title>  {%endblock%}
 
-{% block background %}{% load static %}{% static 'core/img/core.jpg' %}{% endblock %}
-<!-- le indico a django que tengo que cargar archivos estaticos para renderizar esta pagina -->
+ {% block content %}
+ {% load static %} <!-- Override files  -->
+ <!-- ******************************************************************INCLUYENDO ARCHIVOS ESTATICOS*********************************************************** -->
+  <link rel="stylesheet" href="{% static 'core/css/estilosEstudio.css' %}">
+  <script src="{% static 'core/js/funcionesEstudio.js' %}"></script>
+  
+<body>
+                                                                                      <hr>
+
+  <!-- ******************************************************************FORMULARIO BUSQUEDA************************************************************* -->
+<form class="form-inline"  method="GET">
+  {% csrf_token %}
+    <input type="text" class="verde" placeholder="Buscar paciente.." name="q" style="" >
+      <button type="submit" class="azul"><i class="fa fa-search"></i></button>
+  </form>
+<!-- ***************************************************************FORMULARIO ESTUDIO***************************************************************************** -->
+<form method="POST">
+    {% csrf_token %}
+      <input type="text" name="pacientes" id="id_pac_estudio" style="display: none;">
+
+<div class="table-wrapper-scroll-y my-custom-scrollbar table-responsive-sm">
+  <table class="table table-dark table-hover table-striped mb-0 " border="1" >
+    <thead style="background-color: purple;">
+      <tr>
+       <th>Paciente</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>DNI</th>
+          <th>Cobertura medica</th>
+          <th>Numero de afiliado</th>
+          <th style="display: none;">Fecha de Nacimiento</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if eventos %}
+    {% for k in eventos %}
+  <tr>
+      <th><input type="radio" value="{{k.id_pac}}" name="d" id="{{k.fecha_nacimiento}}" ></th>
+          <td>{{k.nombre}}</td>
+          <td>{{k.apellido}}</td>
+          <td>{{k.dni}}</td>
+          <td>{{k.cobertura_medica}}</td>
+          <td>{{k.numero_afilido}}</td>
+          <td style="display: none;">{{k.fecha_nacimiento}}</td>
+    </tr>
+    {% endfor %}
+    {% else %}
+    {% endif %}
+    </tbody>
+  </table>
+</div>
+                                                                                        <hr>
+<div class="container">
+        <div class="row">
+          <div class="form-group col-md-3"><label for="sel1">Institucion:</label>
+           <input type="text" class="form-control" id="" placeholder="" name="instituciones">
+           
+          </div>
+            <div class="form-group col-md-3">
+                  <label for="email">Edad:</label>
+                  <input type="text" class="form-control"  placeholder="" name="edad" id="edad" >
+                </div>
+        </div>   
+
+         <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="form_name">Peso (Kg): </label>
+                        <input  type="text" name="peso" class="form-control" placeholder="" required="required" onKeyUp="calcular()"  id="num1">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="form_email">IMC:</label>
+                        <input  type="text" name="imc" class="form-control" placeholder="" required="required"  id="resultado" >                       
+                    </div>
+                </div>       
+          </div>
+
+          <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="form_name">Talla (Cm):</label>
+                        <input type="text" name="talla" class="form-control" required="required" onKeyUp="calcular()" data-error="name is required." id="num2">
+                     
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="form_email">Superficie Corporal (m<sup>2</sup>):</label>
+                        <input type="text" name="supCorporal" class="form-control" placeholder="" required="required" id="resultado2" >
+                        
+                    </div>
+                </div>
+             
+            </div>
+
+ <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="form_name">Perimetro Abdominal:</label>
+                        <input id="form_name" type="text" name="perimetroAbdominal" class="form-control" placeholder="" required="required" data-error="name is required.">
+          
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="form_email">Decubito:</label>
+                        <input id="form_email" type="text" name="decubito" class="form-control" placeholder="" required="required" data-error="Valid email is required.">
+                    
+                    </div>
+                </div>
+             
+
+ <div class="col-sm-4" >
+                    <div class="form-group "style="margin-top:  35px;">
+                        <label for="form_email" style="margin: 0px 0px 22px;">Urgencia:</label>
+                        <input id="form_email" type="checkbox" name="urgencia" class="" placeholder="" required="required"  style="width: 20px; height: 20px; ">
+                        
+                    </div>
+                </div>
+
+            </div>
+
+
+<div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="form_name">Medico:</label>
+                     <input id="form_name" type="text" name="medico" class="form-control" placeholder="" required="required" data-error="name is required.">
+                        
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="form_email">Indicacion:</label>
+                        <input id="form_email" type="text" name="indicacion" class="form-control" placeholder="" required="required" data-error="Valid email is required.">
+                    
+                    </div>
+                </div>
+             
+
+ <div class="col-sm-4" style="">
+                    <div class="form-group">
+>
  
 
-
-{%block headers%}
-{%endblock%}
-
-
- {% block content %}
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <meta charset="utf-8"/>
-    <!--<link rel="stylesheet" href="estilo.css">-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">  
-
-<!-- Estilos de las fuentes  y los espacios de mis divs de bootstrap   -->
-<style>
-            .espacio{
-            margin-left: 200px;     
-            margin-bottom: 20px;
-            }
-
-            .cober{
-              margin-bottom: 40;
-              margin-left: 200px;
-            }
-
-            .espacio2{
-                 margin-left: 100px;
-                 margin-bottom: 20px;
-            }
-           
-
-
-            .borde{
-            
-                background: #2d3436;
-                margin-left: 515px;
-            }
-
-            .grad {
-                background-image: linear-gradient(to right, #636e72 , #dfe6e9);
-            }
-
-            
-    </style>
-
-
-
- <!-- genero el formulario-->
-   <form method="POST">
-          {% csrf_token %}
-                <div class="row">
-                    <div class="col-sm-2 espacio" ><!-- Estudio -->
-                        {{form.pacientes.label_tag}}
-                        {{form.pacientes}}
+                      <!-- <input id="form_email" type="text" name="calidadTecnica" class="form-control" placeholder="" required="required" data-error="Valid email is required."> -->
+                       
+                        <label for="" style="float: center; ">Calidad Tecnica:</label>
+                     <div style="background-color: red;">
+                        <p class="clasificacion form-inline  " style="margin: 0px; float: left; "  >
+                              <input id="radio1" type="radio" name="calidadTecnica" value="5"    style="display: none;"><!--
+                           --><label for="radio1" class="label">★</label><!--
+                           --><input id="radio2" type="radio" name="calidadTecnica" value="4"style="display: none;" ><!--
+                           --><label for="radio2" class="label">★</label><!--
+                           --><input id="radio3" type="radio" name="calidadTecnica" value="3" style="display: none;"><!--
+                           --><label for="radio3" class="label">★</label><!--
+                           --><input id="radio4" type="radio" name="calidadTecnica" value="2"style="display: none;" ><!--
+                           --><label for="radio4" class="label">★</label><!--
+                           --><input id="radio5" type="radio" name="calidadTecnica" value="1" style="display: none;"><!--
+                           --><label for="radio5" class="label">★</label>
+                         </p>
+                     </div>
                     </div>
-                   
                 </div>
-                    </div>
 
-                
-                <div class="row">
-                    <div class="col-sm-2 espacio" ><!-- Estudio -->
-                        {{form.instituciones.label_tag}}
-                        {{form.instituciones}}
-                    </div>
-                   
-                </div>
-                    </div>
-
-                   
+            </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="form_message">Observaciones:</label>
+                    <textarea id="form_message" name="observaciones" class="form-control" placeholder="" rows="4" required="required" ></textarea>
                     
+                </div>
+            </div>
+            <div class="col-md-12">
+                <input type="submit" class="btn btn-warning btn-send" value="Guardar">
+            </div>
+        </div>
+  </div>
+    
+    </form>
 
-
-                    <div class="row">
-                            <div class="col-sm-2 espacio"><!-- Dni -->
-                                    {{form.medico.label_tag}}
-                                    <br>
-                                   {{form.medico}}
-                            </div>
-                            <div class="form-group col-sm-2 espacio2"> <!-- Cobertura Social -->
-                                {{form.peso.label_tag}}
-                                <br>
-                                {{form.peso}} 
-                            </div>   
-                          </div>
-                          <div class="row">
-                          <img src="{% static 'core/img/listo.png' %}" alt="" style="position: absolute; right: 250px" class="ml-md-auto" width="500">
-                                <div class="col-sm-3 espacio"><!-- NombreCompleto -->
-                                        {{form.talla.label_tag}}
-                                        <br>
-                                        {{form.talla}}
-                                </div>    
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-3 espacio"><!-- NombreCompleto -->
-                                        {{form.edad.label_tag}}
-                                        <br>
-                                        {{form.edad}}
-                                </div>    
-                            </div>
-                            
-                            <div class="row">
-                        
-                                   <div class="col-sm-1 espacio"><!-- Peso -->
-                                            {{form.imc.label_tag}}
-                                            <br>
-                                            {{form.imc}}
-                                    </div>
-                                   
-                            </div>
-                           
-                             <div class="row">
-                             <div class="col-sm-3 espacio"><!-- imc -->
-                                            {{form.supCorporal.label_tag}}
-                                            <br>
-                                            {{form.supCorporal}}
-                                          
-                                    </div>
-                            </div>
-                             <div class="row">
-                        
-                                    <div class="col-sm-2 espacio"><!-- perimetro abdominal -->
-                                            {{form.urgencia.label_tag}}
-                                           
-                                            {{form.urgencia}}
-                                     </div>
-                                     
-                             </div>
-                            
-                             <div class="row">
-                        
-                                    <div class="col-sm-2 espacio"><!-- perimetro abdominal -->
-                                            {{form.perimetroAbdominal.label_tag}}
-                                            <br>
-                                            {{form.perimetroAbdominal}}
-                                     </div>
-                                     
-                             </div>
-                             <div class="row">  
-                                    <div class="form-group col-sm-2 espacio"> <!-- Calidad Tecnica -->
-                                       {{form.calidadTecnica.label_tag}}
-                                        <br>
-                                        {{form.calidadTecnica}}   
-                                    </div>   
-                                </div>
-                            <div class="row">  
-                                        <div class="form-group col-sm-4 espacio"> <!-- Indicacion del Estudio -->
-                                            {{form.indicacion.label_tag}}
-                                            <br>
-                                            {{form.indicacion}}   
-                                        </div>   
-                            </div>
-                            <div class="row">  
-                                    <div class="form-group col-sm-2 espacio"> <!-- Decubito -->
-                                       {{form.decubito.label_tag}}
-                                       <br>
-                                       {{form.decubito}}
-                                           
-                                         
-                                    </div>   
-                        </div>
-                        <div class="row"> 
-                        <div class="form-group col-sm-5 espacio">
-                              {{form.observaciones.label_tag}}
-                                <br>
-                               {{form.observaciones}}
-                              </div>
-                        </div>
-                        
-                        <div class="row"> 
-                                <div class="form-group col-sm-6 espacio">
-                                        <button type="submit" class="btn btn-secondary btn-lg borde ">Guardar</button> 
-                                </div>
-                        </div>
-    </form> 
-   
-
+</body>
 
  {% endblock %} 

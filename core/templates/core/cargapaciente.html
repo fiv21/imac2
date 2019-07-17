@@ -1,143 +1,78 @@
 {% extends "core/base.html" %} <!-- extiendo de base.htm  -->
 {%block title%}  <title>Carga pacientes</title>  {%endblock%}
 
-{% block background %}{% load static %}{% static 'core/img/core.jpg' %}{% endblock %}
 
-{%block headers%}
-{%endblock%}
 
 {% block content %}
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <meta charset="utf-8"/>
-    <!--<link rel="stylesheet" href="estilo.css">-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">  
-
-<!-- Estilos de las fuentes  y los espacios de mis divs de bootstrap   -->
 <style>
-            .espacio{
-            margin-left: 200px;     
-            margin-bottom: 20px;
+     
+            label{
+                color: white;
             }
+</style>
+ 
 
-            .cober{
-              margin-bottom: 40;
-              margin-left: 200px;
-            }
-
-            .espacio2{
-                 margin-left: 100px;
-                 margin-bottom: 20px;
-            }
-           
-
-
-            .borde{
-            
-                background: #2d3436;
-                margin-left: 515px;
-            }
-
-            .grad {
-                background-image: linear-gradient(to right, #636e72 , #dfe6e9);
-            }
-
-            
-    </style>
-
-<!-- genero el formulario-->
-<form method="POST">
-        {% csrf_token %}
-        <div class="row">
-            <div class="col-sm-2 espacio"><!-- Dni -->
-                {{form.nombre.label_tag}}
-                    <br>
-                {{form.nombre}}
-            </div>
-            </div>
-
-
-        <div class="row">
-            <img src="{% static 'core/img/listo.png' %}" alt="" style="position: absolute; right: 250px" class="ml-md-auto" width="500">
-            <div class="col-sm-2 espacio"><!-- Dni -->
-                {{form.apellido.label_tag}}
-                <br>
-                {{form.apellido}}
-        </div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-2 espacio"><!-- Dni -->
-                {{form.dni.label_tag}}
-                <br>
-                {{form.dni}}
-        </div>
-        </div>
-
-        <div class="row">
-            
-            <div class="col-sm-2 espacio"><!-- Dni -->
-                {{form.nacionalidad.label_tag}}
-                <br>
-                {{form.nacionalidad}}
-        </div>
-        </div>
-
-        <div class="row">
-
-            <div class="col-sm-2 espacio"><!-- Dni -->
-                {{form.domicilio.label_tag}}
-                <br>
-                {{form.domicilio}}
-        </div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-2 espacio"><!-- Dni -->
-                {{form.numero_domicilio.label_tag}}
-                <br>
-                {{form.numero_domicilio}}
-        </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-2 espacio"><!-- Dni -->
-                {{form.cobertura_medica.label_tag}}
-                <br>
-                {{form.cobertura_medica}}
-        </div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-2 espacio"><!-- Dni -->
-                {{form.numero_afilido.label_tag}}
-                <br>
-                {{form.numero_afilido}}
-        </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-sm-2 espacio"><!-- Dni -->
-                {{form.sexo.label_tag}}
-                <br>
-                {{form.sexo}}
-        </div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-2 espacio"><!-- Dni -->
-                {{form.fecha_nacimiento.label_tag}}
-                <br>
-                {{form.fecha_nacimiento}}
-        </div>
-        </div>
-
-        <div class="row"> 
-            <div class="form-group col-sm-6 espacio">
-                <button type="submit" class="btn btn-secondary btn-lg borde ">Guardar</button> 
-            </div>
-        </div>
-</form> 
+<br><br>
+<body>
+<div class="container">
+    
+    <form  method="POST">
+       {% csrf_token %}
+      <div class="form-group col-md-5">
+        <label for="email">Nombre:</label>
+        <input type="text" class="form-control" id="email" placeholder="" name="nombre">
+      </div>
+      <div class="form-group col-md-5">
+        <label for="pwd">Apellido:</label>
+        <input type="text" class="form-control" id="pwd" placeholder="" name="apellido">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="email">Dni:</label>
+        <input type="text" class="form-control" id="email" placeholder="" name="dni">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="pwd">Nacionalidad:</label>
+        <input type="text" class="form-control" id="pwd" placeholder=" " name="nacionalidad">
+      </div>
+      <div class="form-group col-md-7">
+            <label for="comment">Domicilio:</label>
+            <textarea class="form-control" rows="5" id="comment" name="domicilio"></textarea>
+          </div> 
+      <div class="form-group col-md-3">
+        <label for="pwd">Numero de Domicilio:</label>
+        <input type="text" class="form-control col-md-4 " id="pwd" placeholder="" name="numero_domicilio">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="email">Cobertura Médica:</label>
+        <input type="text" class="form-control" id="email" placeholder="" name="cobertura_medica">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="pwd">Número de Afiliado:</label>
+        <input type="text" class="form-control" id="pwd" placeholder="" name="numero_afilido">
+      </div>
+      <div class="form-group col-md-3">
+            <label for="sel1">Sexo:</label>
+            <select class="form-control" id="sel1" name="sexo">
+              <option>------</option>  
+              <option>Masculino</option>
+              <option>Femenino</option>
+              
+            </select>
+          </div> 
+      <div class="form-group col-md-3">
+        <label for="pwd">Fecha de Nacimiento:</label>
+        <input type="date" class="form-control" id="pwd" placeholder="" min="1900-01-01" max="2019-12-31" name="fecha_nacimiento">
+      </div>
+      <div class="form-group col-md-2">
+      <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+      <br><br>
+    </form>
+    
+  </div>
+  
+  
+  </body> 
    
 
 
