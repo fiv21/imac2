@@ -1,0 +1,199 @@
+{% extends "core/base.html" %}
+{%block title%} <title>Función Ventricular</title>{%endblock%}
+
+
+{% block content %}
+
+
+{% load static %} <!-- Override files  -->
+ <!-- ******************************************************************INCLUYENDO ARCHIVOS ESTATICOS*********************************************************** -->
+  <link rel="stylesheet" href="{% static 'fventricular/css/estilosVentricular.css' %}">
+  <script src="{% static 'fventricular/js/funcionesVentricular.js' %}"></script>
+
+
+<hr>
+
+<form class="form-inline"  method="GET">
+  {% csrf_token %}
+    <input type="text" class="verde" placeholder="Buscar paciente.." name="q" style="" >
+      <button type="submit" class="azul"><i class="fa fa-search"></i></button>
+  </form>
+<!-- ***************************************************************FORMULARIO ESTUDIO***************************************************************************** -->
+<form method="POST">
+    {% csrf_token %}
+      <input type="text" name="paciente_fv" id="id_pac_ventricular" style="display: none;">
+
+<div class="table-wrapper-scroll-y my-custom-scrollbar table-responsive-sm">
+  <table class="table table-dark table-hover table-striped mb-0 " border="1" >
+    <thead style="background-color: purple;">
+      <tr>
+       <th>Paciente</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>DNI</th>
+          <th>Cobertura medica</th>
+          <th>Numero de afiliado</th>
+          <th style="display: none;">Fecha de Nacimiento</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if eventos %}
+    {% for k in eventos %}
+  <tr>
+      <th><input type="radio" value="{{k.id_pac}}" name="d" id="{{k.fecha_nacimiento}}" ></th>
+          <td>{{k.nombre}}</td>
+          <td>{{k.apellido}}</td>
+          <td>{{k.dni}}</td>
+          <td>{{k.cobertura_medica}}</td>
+          <td>{{k.numero_afilido}}</td>
+          <td style="display: none;">{{k.fecha_nacimiento}}</td>
+    </tr>
+    {% endfor %}
+    {% else %}
+    {% endif %}
+    </tbody>
+  </table>
+</div>
+
+<hr>
+
+
+
+
+
+
+
+<form method="POST">
+    {% csrf_token %}
+
+<body class="mx-auto">
+
+
+<br>
+
+<div class="form-inline ">
+	
+	            
+<fieldset class=" form-group form-inline col-md-6 ml-md-5 mt-md-2">    	
+<legend>STRESS</legend>							
+	<div class=" conteiner">		
+				<div class="row ml-md-5">
+					<div class="row col-md-4 mt-md-2 ml-md-2 " style="margin-left: 2px;">
+					
+							<label class=" control-label mr-md-5 ">Volumen Relativo: </label>
+							<input type="text" class="form-control mt-md-2 col-md-9" id="inlineFormInput" name="vol_relat_rest">
+														
+				</div>	
+				<div class="row col-md-4 mt-md-2 " style="margin-left: 2px;">
+					
+							<label class=" control-label mr-md-5">VFDVI: </label>
+							<input type="text" class="form-control mt-md-2 col-md-9" id="inlineFormInput" name="vfdvi_rest">
+														
+				</div>
+			
+					
+				<div class="row col-md-4 mt-md-2" style="margin-left: 2px;">
+					
+							<label class=" control-label mr-md-5">FSVSI: </label>
+							<input type="text" class="form-control mt-md-2 col-md-9" id="inlineFormInput" name="fvsvi_rest">
+														
+				</div>									
+				</div>
+			
+					
+				<div class="row col-md-4 mt-md-5 ml-md-5 ">
+					
+							<label class=" control-label col-md-8">VFDVI m<sup>2</sup>: </label>
+							<input type="text" class="form-control col-md-4" id="inlineFormInput" name="vfdvi_m2_rest">
+														
+				</div>	
+				<div class="row col-md-4 mt-md-2 ml-md-5" >
+					
+							<label class=" control-label col-md-8 ">FSVSI m<sup>2</sup>: </label>
+							<input type="text" class="form-control col-md-4" id="inlineFormInput" name="fvsvi_m2_rest">
+														
+				</div>
+			
+					
+				<div class="row col-md-4 mt-md-2 ml-md-5 mb-md-3" >
+					
+							<label class=" control-label col-md-8 ">Fey: </label>
+							<input type="text" class="form-control col-md-4" id="inlineFormInput" name="frac_eyeccion_rest">
+														
+				</div>
+	</div>					
+</fieldset>				
+									
+<fieldset class="form-group form-inline col-md-2 ml-md-5 mt-md-5 ">    	
+	<div class="conteiner">
+		<div class="row col-md-6 ml-md-5 mt-md-5 mb-md-5 ">
+					
+							<label class=" control-label col-md-1  ">TID: </label>
+							<input type="text" class="form-control mt-md-2 col-md-12" id="inlineFormInput" name="tid">
+														
+				</div>
+	</div>
+</fieldset>	
+
+<fieldset class="form-group form-inline col-md-6 ml-md-5 mt-md-3">    	
+<legend>REST</legend>
+	<div class=" conteiner">		
+				<div class="row ml-md-5">
+					<div class="row col-md-4 mt-md-2 ml-md-2" style="margin-left: 2px;">
+					
+							<label class=" control-label mr-md-5 ">Volumen Relativo: </label>
+							<input type="text" class="form-control mt-md-2 col-md-9" id="inlineFormInput" name="vol_relat_stress">
+														
+				</div>	
+				<div class="row col-md-4 mt-md-2 " style="margin-left: 2px;" >
+					
+							<label class=" control-label mr-md-5">VFDVI: </label>
+							<input type="text" class="form-control mt-md-2 col-md-9" id="inlineFormInput" name="vfdvi_stress">
+														
+				</div>
+			
+					
+				<div class="row col-md-4 mt-md-2" style="margin-left: 2px;">
+					
+							<label class=" control-label mr-md-5">FSVSI: </label>
+							<input type="text" class="form-control mt-md-2 col-md-9" id="inlineFormInput" name="fvsvi_stress">
+														
+				</div>									
+				</div>
+			
+					
+				<div class="row col-md-4 mt-md-5 ml-md-5">
+					
+							<label class=" control-label col-md-8">VFDVI m<sup>2</sup>: </label>
+							<input type="text" class="form-control col-md-4" id="inlineFormInput" name="vfdvi_m2_stress">
+														
+				</div>	
+				<div class="row col-md-4 mt-md-2 ml-md-5">
+					
+							<label class=" control-label col-md-8 ">FSVSI m<sup>2</sup>: </label>
+							<input type="text" class="form-control col-md-4" id="inlineFormInput" name="fvsvi_m2_stress">
+														
+				</div>
+			
+					
+				<div class="row col-md-4 mt-md-2 ml-md-5 mb-md-3">
+					
+							<label class=" control-label col-md-8 ">Fey: </label>
+							<input type="text" class="form-control col-md-4" id="inlineFormInput" name="frac_eyeccion_stress">
+														
+				</div>
+	</div>			
+</fieldset>	
+	
+<div class=" form-group form-inline col-md-6 mb-md-2 mt-md-3 ml-md-5 ">
+						
+		<button class="btn btn-danger mr-md-3 ml-auto" > Cancelar</button>
+		
+		<button  class="btn btn-success " > Guardar</button>
+</div>	
+				<!-- -----------ultimo div -->
+</div>
+	                
+</form>	
+</body>
+{% endblock %}

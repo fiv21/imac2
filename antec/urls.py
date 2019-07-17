@@ -5,6 +5,7 @@ urlpatterns = [
 
     #path del core
     path('antecedente/', views.form_antecedente, name="antecedentes"),
+    #path('busqueda/', views.busqueda, name="busquedas"),
     
     
 ]

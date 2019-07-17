@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import os
 import sys
-import pandas
 
 if __name__ == '__main__':
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'imac2.settings')
@@ -14,4 +13,3 @@ if __name__ == '__main__':
             "forget to activate a virtual environment?"
         ) from exc
     execute_from_command_line(sys.argv)
-#esto es una modificacion

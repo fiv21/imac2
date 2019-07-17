@@ -1,93 +1,63 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
-<body>
-
-	<!-- Comienzo de Navbar -->
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-  <a class="navbar-brand" href="#"> <img src="listo.png" width="70" height="50" alt=""></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-<!-- ---------------- -->
-
-
-
-
-<form class="form-inline">
-	<div class="input-group">
-      <div class="input-group-prepend">
-      	 <span class="input-group-text">🔍</span>
-      	</div>
-      	    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-      </div>
-
+{% extends "core/base.html" %}
+{%block title%} <title>Ergometria</title>{%endblock%}
+{% block content %}
+{% load static %} <!-- Override files  -->
+ <!-- ******************************************************************INCLUYENDO ARCHIVOS ESTATICOS*********************************************************** -->
+  <link rel="stylesheet" href="{% static 'ergo/css/estilosErgometria.css' %}">
+  <script src="{% static 'ergo/js/funcionesErgometria.js' %}"></script>
+<hr>
+<form class="form-inline"  method="GET">
+  {% csrf_token %}
+    <input type="text" class="verde" placeholder="Buscar paciente.." name="q" style="" >
+      <button type="submit" class="azul"><i class="fa fa-search"></i></button>
   </form>
+<!-- ***************************************************************FORMULARIO ESTUDIO***************************************************************************** -->
+<form method="POST">
+    {% csrf_token %}
+      <input type="text" name="paciente_ergo" id="id_pac_ergo" style="display: none;">
 
-    
-  </div>
-</nav>
-<!-- Fin de Navbar -->
-<br>
-	<table class="table table-dark table-hover" border="1">
-	    <thead>
-	      <tr>
-	        <th><input type="checkbox" value=""></th>
-	        <th>#Estudio</th>
-	        <th>Fecha</th>
-	        <th>Apellido</th>
-	        <th>Nombre</th>
-	        <th>DNI</th>
-	      </tr>
-	    </thead>
-	    <tbody>
-	      <tr>
-	        <td><input type="checkbox" value=""></td>
-	        <td>John</td>
-	        <td>Doe</td>
-	        <td>john@example.com</td>
-	        <td>1</td>
-	        <td>2</td>
-	      </tr>
-	      <tr>
-	      <td><input type="checkbox" value=""></td>
-	        <td>Mary</td>
-	        <td>Moe</td>
-	        <td>mary@example.com</td>
-	         <td>3</td>
-	          <td>4</td>
-	      </tr>
-	      <tr>
-	      <td><input type="checkbox" value=""></td>
-	        <td>July</td>
-	        <td>Dooley</td>
-	        <td>july@example.com</td>
-	         <td>5</td>
-	          <td>6</td>
-	      </tr>
-	    </tbody>
-	  </table>
-	
-
-
-<br>
-
-
-
+<div class="table-wrapper-scroll-y my-custom-scrollbar table-responsive-sm">
+  <table class="table table-dark table-hover table-striped mb-0 " border="1" >
+    <thead style="background-color: purple;">
+      <tr>
+       <th>Paciente</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>DNI</th>
+          <th>Cobertura medica</th>
+          <th>Numero de afiliado</th>
+          <th style="display: none;">Fecha de Nacimiento</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if eventos %}
+    {% for k in eventos %}
+  <tr>
+      <th><input type="radio" value="{{k.id_pac}}" name="d" id="{{k.fecha_nacimiento}}" ></th>
+          <td>{{k.nombre}}</td>
+          <td>{{k.apellido}}</td>
+          <td>{{k.dni}}</td>
+          <td>{{k.cobertura_medica}}</td>
+          <td>{{k.numero_afilido}}</td>
+          <td style="display: none;">{{k.fecha_nacimiento}}</td>
+    </tr>
+    {% endfor %}
+    {% else %}
+    {% endif %}
+    </tbody>
+  </table>
+</div>
+               
+<hr>
 <form method="POST">
     {% csrf_token %}
 	<div class="form-group form-inline ">
 
-	<div class="col-md-3 form-inline ">
+<!-- 	<div class="col-md-3 form-inline ">
 		
 		<label class="form-check-label" for="autoSizingCheck"> Paciente</label>
 	</div>
-			
+			 -->
 	<div class="col-md-3 form-inline ">
 			      <div class="form-check mr-sm-4">
 			        <input class="form-check-input " type="radio" name="ciclo_ergo">
@@ -227,26 +197,21 @@
 
 	        <div class="col-md-3 form-inline ml-auto"> 
 	        	<label class="control-label ml-sm-2 mr-sm-2" for="inlineFormInput">ITT:</label>
-	        	<input type="text" class="form-control ml-sm-2" id="inlineFormInput" name="itt">
+	        	<input type="text" class="form-control ml-sm-2" id="inlineFormInput" name="itt" >
 	        		     	</div>
 
-				 <div class="col-md-3 form-inline ml-auto"> 
+	</div> 
+
+				 <div class="col-md-3 form-inline mr-auto"> 
 					<button type="submit" class="btn btn-success" > Guardar</button>
 	     	
 	  				</div>
-	</div> 
-
 
 </form>
-
-
-
-
-<!-- js -->
-
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</body>
-</html>
+ <style>
+ 	
+ 	label{
+ 		color: white;
+ 	}
+ </style>
+{% endblock %}

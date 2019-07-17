@@ -1,5 +1,13 @@
 
+$(document).ready(function(){
+ 
+        $('table').on('mousedown', 'input', function(e){
+      var id_seleccionado= $(this).attr('value');
+      $("#id_pac_mpi").val(id_seleccionado);
 
+  });
+
+});
 
 /**********************************************************************************INPUT 1=sss,2=ssr,3=ssd************************************************************************************************/
 //alert("sdadasdas");

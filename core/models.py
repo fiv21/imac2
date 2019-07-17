@@ -54,7 +54,7 @@ class Estudio (models.Model):
     perimetroAbdominal=models.IntegerField(verbose_name="Perimetro Abdominal")
     urgencia=models.BooleanField(verbose_name="Urgente",default=False)
     edad=models.IntegerField(verbose_name="Edad")
-    imc=models.IntegerField(verbose_name="Imc")
+    imc=models.FloatField(verbose_name="Imc")
     supCorporal=models.FloatField(verbose_name="Superficie corporal")
     calidadTecnica=models.IntegerField(verbose_name="Calidad tecnica")
     observaciones=models.TextField(verbose_name="Observaciones")

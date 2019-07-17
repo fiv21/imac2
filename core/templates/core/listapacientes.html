@@ -1,0 +1,10 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+  <h1><center>PACIENTES</center></h1>  
+  {% for pac in object_list  %}
+  <li>{{pac.nombre}} </li>
+  <li>{{pac.apellido}}</li>
+  
+  {% endfor %}
+{% endblock content %}
